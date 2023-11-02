@@ -25,7 +25,7 @@ func Test_ShouldReturnSingleCustomerWhenCallGetCustomerAndGivenByValidId(t *test
 	id := "081e798e-23ca-4db2-83bb-ddc6a1ac5727"
 	customer, er := GetCustomersById("081e798e-23ca-4db2-83bb-ddc6a1ac5727")
 
-	if customer.id != id {
+	if customer.Id != id {
 		t.Fatalf("is not return correct customer")
 	}
 
@@ -36,11 +36,11 @@ func Test_ShouldReturnSingleCustomerWhenCallGetCustomerAndGivenByValidId(t *test
 
 func Test_ShouldAddNewCustomerWhenCallAddNewCustomer(t *testing.T) {
 	newCustomer := NewCustomer{
-		name:      "Test User",
-		role:      "Developer",
-		email:     "testing@dicoding.com",
-		phone:     12345,
-		contacted: false,
+		Name:      "Test User",
+		Role:      "Developer",
+		Email:     "testing@dicoding.com",
+		Phone:     12345,
+		Contacted: false,
 	}
 
 	AddNewCustomer(newCustomer)
@@ -54,7 +54,7 @@ func Test_ShouldAddNewCustomerWhenCallAddNewCustomer(t *testing.T) {
 }
 
 func Test_ShouldReturnErrorWhenCallUpdateCustomerWithInvalidId(t *testing.T) {
-	updatedCustomer := Customer{id: "not-found"}
+	updatedCustomer := Customer{Id: "not-found"}
 	er := UpdateCustomer(updatedCustomer)
 
 	if !truthy.Value(er) {
@@ -65,12 +65,12 @@ func Test_ShouldReturnErrorWhenCallUpdateCustomerWithInvalidId(t *testing.T) {
 func Test_ShouldReturnUpdateWhenCallUpdateCustomerWithValidId(t *testing.T) {
 	id := "081e798e-23ca-4db2-83bb-ddc6a1ac5727"
 	customer := Customer{
-		id:        id,
-		name:      "Dimas Updated",
-		role:      "Software Developer",
-		email:     "dimas@dicoding.com",
-		phone:     1234,
-		contacted: false,
+		Id:        id,
+		Name:      "Dimas Updated",
+		Role:      "Software Developer",
+		Email:     "dimas@dicoding.com",
+		Phone:     1234,
+		Contacted: false,
 	}
 
 	err := UpdateCustomer(customer)
@@ -81,7 +81,7 @@ func Test_ShouldReturnUpdateWhenCallUpdateCustomerWithValidId(t *testing.T) {
 
 	updatedCustomer, _ := GetCustomersById(id)
 
-	if updatedCustomer.name != customer.name {
+	if updatedCustomer.Name != customer.Name {
 		t.Fatalf("is not updating properly")
 	}
 }
@@ -110,7 +110,7 @@ func Test_ShouldReturnDeleteCustomerWhenCallDeleteCustomer(t *testing.T) {
 
 	customer := customers[0]
 
-	if customer.id == id {
+	if customer.Id == id {
 		t.Fatalf("removal is not valid")
 	}
 
