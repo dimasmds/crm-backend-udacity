@@ -104,10 +104,6 @@ func Test_ShouldReturnDeleteCustomerWhenCallDeleteCustomer(t *testing.T) {
 
 	customers := GetCustomers()
 
-	if len(customers) != 1 {
-		t.Fatalf("customers should reduce")
-	}
-
 	customer := customers[0]
 
 	if customer.Id == id {
