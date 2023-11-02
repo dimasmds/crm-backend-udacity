@@ -1,7 +1,6 @@
 package data
 
 import (
-	"github.com/carlmjohnson/truthy"
 	"testing"
 )
 
@@ -16,7 +15,7 @@ func Test_ShouldReturnCustomersWhenCallGetCustomers(t *testing.T) {
 func Test_ShouldReturnErrorWhenCallGetCustomerAndGivenByNotFoundId(t *testing.T) {
 	_, er := GetCustomersById("not-found")
 
-	if !truthy.Value(er) {
+	if er == nil {
 		t.Fatalf("error should be defined")
 	}
 }
@@ -29,7 +28,7 @@ func Test_ShouldReturnSingleCustomerWhenCallGetCustomerAndGivenByValidId(t *test
 		t.Fatalf("is not return correct customer")
 	}
 
-	if truthy.Value(er) {
+	if er != nil {
 		t.Fatalf("error is should not defined")
 	}
 }
@@ -57,7 +56,7 @@ func Test_ShouldReturnErrorWhenCallUpdateCustomerWithInvalidId(t *testing.T) {
 	updatedCustomer := Customer{Id: "not-found"}
 	er := UpdateCustomer(updatedCustomer)
 
-	if !truthy.Value(er) {
+	if er == nil {
 		t.Fatalf("error should be defined")
 	}
 }
@@ -75,7 +74,7 @@ func Test_ShouldReturnUpdateWhenCallUpdateCustomerWithValidId(t *testing.T) {
 
 	err := UpdateCustomer(customer)
 
-	if truthy.Value(err) {
+	if err != nil {
 		t.Fatalf("error should not defined")
 	}
 
@@ -89,7 +88,7 @@ func Test_ShouldReturnUpdateWhenCallUpdateCustomerWithValidId(t *testing.T) {
 func Test_ShouldReturnErrorWhenCallDeleteCustomerWithInvalidId(t *testing.T) {
 	err := DeleteCustomer("not-found")
 
-	if !truthy.Value(err) {
+	if err == nil {
 		t.Fatalf("error should defined")
 	}
 }
@@ -98,7 +97,7 @@ func Test_ShouldReturnDeleteCustomerWhenCallDeleteCustomer(t *testing.T) {
 	id := "081e798e-23ca-4db2-83bb-ddc6a1ac5727"
 	err := DeleteCustomer(id)
 
-	if truthy.Value(err) {
+	if err != nil {
 		t.Fatalf("error should not defined")
 	}
 
