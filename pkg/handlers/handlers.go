@@ -60,6 +60,7 @@ func PostCustomerHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data.AddNewCustomer(customer)
+	w.WriteHeader(http.StatusCreated)
 
 	consumers := data.GetCustomers()
 	err = json.NewEncoder(w).Encode(consumers)
