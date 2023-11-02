@@ -86,7 +86,7 @@ func UpdateCustomer(updatedCustomer Customer) error {
 func DeleteCustomer(id string) error {
 	for i, c := range customers {
 		if c.Id == id {
-			customers = append(customers[:i], customers[i+1])
+			customers = append(customers[:i], customers[i+1:]...)
 			return nil
 		}
 	}
