@@ -15,11 +15,11 @@ type Customer struct {
 }
 
 type NewCustomer struct {
-	Name      string
-	Role      string
-	Email     string
-	Phone     int
-	Contacted bool
+	Name      string `json:"name"`
+	Role      string `json:"role"`
+	Email     string `json:"email"`
+	Phone     int    `json:"phone"`
+	Contacted bool   `json:"contacted"`
 }
 
 var customers = []Customer{
