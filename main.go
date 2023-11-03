@@ -9,6 +9,7 @@ import (
 
 func main() {
 	router := routes.GetConsumersRouter()
+
 	fmt.Println("server start at http://localhost:3000")
 	log.Fatal(http.ListenAndServe(":3000", router))
 }

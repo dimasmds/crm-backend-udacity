@@ -6,6 +6,8 @@ import (
 	"github.com/gorilla/mux"
 	"io"
 	"net/http"
+	"os"
+	"path"
 )
 
 func responseNotFound(w http.ResponseWriter) {
@@ -119,4 +121,10 @@ func DeleteCustomerByIdHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, "Failed to encode JSON", http.StatusInternalServerError)
 	}
+}
+
+func GetStaticFileHandler() http.Handler {
+	dir, _ := os.Getwd()
+	p := path.Join(dir, "static")
+	return http.FileServer(http.Dir(p))
 }
